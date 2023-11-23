@@ -1,28 +1,27 @@
 package board.spring.project.dto;
 
 import board.spring.project.entity.Post;
-import board.spring.project.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 
 
 @Getter
-public class AddPostDto {
+public class PostAddDto {
     private final String title;
     private final String content;
-    private final User user;
+    private final String writer;
 
     @Builder
-    public AddPostDto(String title, String content, User user) {
+    public PostAddDto(String title, String content, String writer) {
         this.title = title;
         this.content = content;
-        this.user = user;
+        this.writer = writer;
     }
     public Post toEntity(){
         return Post.builder()
                 .title(title)
                 .content(content)
-                .user(user)
+                .writer(writer)
                 .build();
     }
 

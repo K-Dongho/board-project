@@ -33,6 +33,9 @@ public class Post extends BaseTime {
     @ColumnDefault("0")
     private Long viewCount;
 
+    @Column(name = "writer")
+    private String writer;
+
     @OneToMany(mappedBy = "post", fetch = EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comment = new ArrayList<>();
 
@@ -40,13 +43,13 @@ public class Post extends BaseTime {
     private User user;
 
     @Builder
-    public Post(Long id, String title, String content, Long viewCount, List<Comment> comment, User user) {
+    public Post(Long id, String title, String content, Long viewCount, List<Comment> comment, String writer) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.viewCount = viewCount;
         this.comment = comment;
-        this.user = user;
+        this.writer = writer;
     }
 }
 

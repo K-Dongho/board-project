@@ -3,6 +3,7 @@ package board.spring.project.controller;
 
 import board.spring.project.dto.PostAddDto;
 import board.spring.project.dto.PostListResponseDto;
+import board.spring.project.dto.PostResponseDto;
 import board.spring.project.entity.Post;
 import board.spring.project.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,13 @@ public class PostController {
                 .toList();
         return ResponseEntity.ok()
                 .body(posts);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostResponseDto> findPost(@PathVariable Long id){
+        Post post = postService.findById(id);
+        return ResponseEntity.ok()
+                .body(new PostResponseDto(post));
     }
 
 }

@@ -56,6 +56,12 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(post);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePost(@PathVariable Long id){
+        postService.delete(id);
+        return ResponseEntity.ok()
+                .build();
+    }
 
 
 }

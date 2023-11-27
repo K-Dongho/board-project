@@ -51,6 +51,12 @@ public class Post extends BaseTime {
         this.comment = comment;
         this.writer = writer;
     }
+
+    public void modify(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
 }
 
 

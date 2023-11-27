@@ -1,9 +1,11 @@
 package board.spring.project.service;
 
 import board.spring.project.dto.PostAddDto;
+import board.spring.project.dto.PostModifyDto;
 import board.spring.project.entity.Post;
 import board.spring.project.repository.PostRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,5 +28,14 @@ public class PostService {
     public Post findById(Long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found " + id + "post"));
+    }
+
+    @Transactional
+    public Post modify(Long id, PostModifyDto postModifyDto){
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found " + id + "post"));
+        post.modify(postModifyDto.getTitle(), postModifyDto.getContent());
+
+        return post;
     }
 }

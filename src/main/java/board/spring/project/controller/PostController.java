@@ -3,6 +3,7 @@ package board.spring.project.controller;
 
 import board.spring.project.dto.PostAddDto;
 import board.spring.project.dto.PostListResponseDto;
+import board.spring.project.dto.PostModifyDto;
 import board.spring.project.dto.PostResponseDto;
 import board.spring.project.entity.Post;
 import board.spring.project.service.PostService;
@@ -47,5 +48,14 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new PostResponseDto(post));
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Post> modifyPost(@PathVariable Long id, @RequestBody PostModifyDto postModifyDto){
+        Post post = postService.modify(id, postModifyDto);
+
+        return ResponseEntity.ok()
+                .body(post);
+    }
+
 
 }
